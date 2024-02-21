@@ -1,0 +1,372 @@
+[
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "policies",
+		"outputs": [
+			{
+				"name": "coverageAmount",
+				"type": "uint256"
+			},
+			{
+				"name": "premiumAmount",
+				"type": "uint256"
+			},
+			{
+				"name": "durationMonths",
+				"type": "uint256"
+			},
+			{
+				"name": "nextPaymentDue",
+				"type": "uint256"
+			},
+			{
+				"name": "beneficiary",
+				"type": "address"
+			},
+			{
+				"name": "deathCertificateSubmitted",
+				"type": "bool"
+			},
+			{
+				"name": "policyType",
+				"type": "uint8"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "balances",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "payPremium",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_policyholder",
+				"type": "address"
+			},
+			{
+				"name": "_newCoverageAmount",
+				"type": "uint256"
+			}
+		],
+		"name": "changeCoverageAmount",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_policyholder",
+				"type": "address"
+			},
+			{
+				"name": "_policyType",
+				"type": "uint8"
+			},
+			{
+				"name": "_beneficiary",
+				"type": "address"
+			}
+		],
+		"name": "issuePolicy",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "owner",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "beneficiary",
+				"type": "address"
+			},
+			{
+				"name": "deathCertificateProvided",
+				"type": "bool"
+			}
+		],
+		"name": "initiateClaim",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "customerInfo",
+		"outputs": [
+			{
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"name": "birthYear",
+				"type": "uint256"
+			},
+			{
+				"name": "addressInfo",
+				"type": "string"
+			},
+			{
+				"name": "doesSmoke",
+				"type": "bool"
+			},
+			{
+				"name": "hasHeartDisease",
+				"type": "bool"
+			},
+			{
+				"name": "hasDiabetes",
+				"type": "bool"
+			},
+			{
+				"name": "hasRespiratoryIssue",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_name",
+				"type": "string"
+			},
+			{
+				"name": "_birthYear",
+				"type": "uint256"
+			},
+			{
+				"name": "_addressInfo",
+				"type": "string"
+			},
+			{
+				"name": "_doesSmoke",
+				"type": "bool"
+			},
+			{
+				"name": "_hasHeartDisease",
+				"type": "bool"
+			},
+			{
+				"name": "_hasDiabetes",
+				"type": "bool"
+			},
+			{
+				"name": "_hasRespiratoryIssue",
+				"type": "bool"
+			}
+		],
+		"name": "submitCustomerInfo",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"name": "policyholder",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "policyType",
+				"type": "uint8"
+			},
+			{
+				"indexed": false,
+				"name": "coverageAmount",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "premiumAmount",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "durationMonths",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "beneficiary",
+				"type": "address"
+			}
+		],
+		"name": "PolicyIssued",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"name": "policyholder",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "PremiumPaid",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"name": "policyholder",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "ClaimInitiated",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"name": "policyholder",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "birthYear",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "addressInfo",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "doesSmoke",
+				"type": "bool"
+			},
+			{
+				"indexed": false,
+				"name": "hasHeartDisease",
+				"type": "bool"
+			},
+			{
+				"indexed": false,
+				"name": "hasDiabetes",
+				"type": "bool"
+			},
+			{
+				"indexed": false,
+				"name": "hasRespiratoryIssue",
+				"type": "bool"
+			}
+		],
+		"name": "CustomerInfoSubmitted",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"name": "policyholder",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "newCoverageAmount",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "newPremiumAmount",
+				"type": "uint256"
+			}
+		],
+		"name": "CoverageUpdated",
+		"type": "event"
+	}
+]

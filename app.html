@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LifeAssure Insurance</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/web3/dist/web3.min.js"></script>
+    <style>
+        body {
+            background-color: black;
+            padding-top: 70px;
+        }
+        .hidden {
+            display: none;
+        }
+        .container {
+            max-width: 960px;
+        }
+        .wallet-button, .form-control, .btn {
+            margin-bottom: 20px;
+        }
+        .insurance-section {
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .navbar {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <a class="navbar-brand" href="#">AssureLife</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#aboutSection">About AssureLife Insurance</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#connectWalletButton">Dashboard <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#policiesSection">Our Policies</a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact Us</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container" id="dashboardSection">
+        <!-- About LifeAssure Insurance Section -->
+        <div id="aboutSection" class="insurance-section">
+            <h2>About AssureLife Insurance</h2>
+            <p>AssureLife Insurance is a decentralized insurance platform that uses blockchain technology to revolutionize the insurance industry. It allows users to issue policies, pay premiums, initiate claims, and exchange fiat currency for AssureLife tokens. The platform enhances transparency, security, and trust in insurance transactions, addressing inefficiencies in traditional systems. AssureLife Insurance empowers users, improves the user experience, and aims to introduce more insurance products and functionalities. It has received positive feedback and has the potential to drive innovation and democratize access to insurance services.</p>
+        </div>
+
+               
+        <div class="insurance-section">
+            <h1>Dashboard</h1>
+            <button id="connectWalletButton" class="btn btn-primary wallet-button">Connect Wallet</button>
+            <h2>Enter Address to Retrieve Info</h2>
+            <input type="text" id="userAddressInput" placeholder="Enter Address Here" class="form-control">
+            <button id="fetchCustomerInfoButton" onclick="fetchCustomerInfo()" class="btn btn-info mt-2" disabled>Fetch Customer Info</button>
+            <button id="fetchPolicyInfoButton" onclick="fetchPolicyInfo()" class="btn btn-secondary mt-2" disabled>Fetch Policy Info</button>
+        </div>
+        
+        <div id="customerInfoDisplay" class="insurance-section hidden"></div>
+        <div id="policyInfoDisplay" class="insurance-section hidden"></div>
+
+        <!-- Pay Premium Section -->
+        <div class="insurance-section">
+            <h2>Pay Premium</h2>
+            <input type="text" id="premiumAmountInput" placeholder="Premium Amount (in Ether)" class="form-control">
+            <button id="payPremiumButton" onclick="payPremium()" class="btn btn-success mt-2" disabled>Pay Premium</button>
+        </div>
+
+        <!-- Initiate Claim Section -->
+        <div class="insurance-section">
+            <h2>Initiate Claim</h2>
+            <input type="text" id="claimAmountInput" placeholder="Claim Amount (in Ether)" class="form-control" disabled>
+            <button id="initiateClaimButton" onclick="initiateClaim()" class="btn btn-danger mt-2" disabled>Initiate Claim</button>
+        </div>
+
+        <!-- Increase Coverage Amount Section -->
+        <div class="insurance-section">
+            <h2>Increase Coverage Amount</h2>
+            <input type="text" id="newCoverageAmountInput" placeholder="New Coverage Amount" class="form-control">
+            <button id="increaseCoverageButton" onclick="increaseCoverageAmount()" class="btn btn-warning mt-2" disabled>Increase Coverage</button>
+        </div>
+
+        <div id="policiesSection" class="insurance-section">
+            <h2>Our Policies</h2>
+            <div class="row">
+                <!-- Basic Policy Card -->
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Basic</h5>
+                            <p class="card-text">Coverage amount: 100 Ether</p>
+                            <a href="#" class="btn btn-primary" data-toggle="collapse" data-target="#basicPolicyDesc">More Info</a>
+                        </div>
+                    </div>
+                    <div id="basicPolicyDesc" class="collapse">
+                        <p>A foundational coverage option designed for essential protection. Ideal for individuals seeking basic financial security.</p>
+                    </div>
+                </div>
+                <!-- Comprehensive Policy Card -->
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Comprehensive</h5>
+                            <p class="card-text">Coverage amount: 200 Ether</p>
+                            <a href="#" class="btn btn-primary" data-toggle="collapse" data-target="#comprehensivePolicyDesc">More Info</a>
+                        </div>
+                    </div>
+                    <div id="comprehensivePolicyDesc" class="collapse">
+                        <p>Extended coverage for those seeking higher protection levels. Covers a wide range of potential risks for peace of mind.</p>
+                    </div>
+                </div>
+                <!-- Enhanced Policy Card -->
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Enhanced</h5>
+                            <p class="card-text">Coverage amount: 500 Ether</p>
+                            <a href="#" class="btn btn-primary" data-toggle="collapse" data-target="#enhancedPolicyDesc">More Info</a>
+                        </div>
+                    </div>
+                    <div id="enhancedPolicyDesc" class="collapse">
+                        <p>Our premium option offering the highest level of coverage. Designed for those who require comprehensive financial protection and security.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    
+
+    <script>
+        let web3;
+        let contract;
+        let userAddress;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('connectWalletButton').addEventListener('click', connectWallet);
+        });
+
+        async function connectWallet() {
+            if (window.ethereum) {
+                try {
+                    await window.ethereum.request({ method: 'eth_requestAccounts' });
+                    web3 = new Web3(window.ethereum);
+                    userAddress = await web3.eth.getAccounts();
+                    userAddress = userAddress[0];
+                    console.log("Wallet connected and using account:", userAddress);
+                    await loadContractABI();
+                } catch (error) {
+                    console.error("Error connecting to wallet:", error);
+                }
+            } else {
+                alert('Please install MetaMask to use this app.');
+            }
+        }
+
+        async function loadContractABI() {
+            try {
+                const response = await fetch('/ABI_assurecoin.json');
+                if (!response.ok) throw new Error(`Failed to fetch ABI: ${response.status} ${response.statusText}`);
+                const abi = await response.json();
+                const contractAddress = '0x3eB4e257C165B4cB0d37ae98646Caaf9420743da';
+                contract = new web3.eth.Contract(abi, contractAddress);
+                console.log("Contract loaded");
+                document.getElementById('fetchCustomerInfoButton').disabled = false;
+                document.getElementById('fetchPolicyInfoButton').disabled = false;
+                document.getElementById('payPremiumButton').disabled = false;
+                document.getElementById('initiateClaimButton').disabled = false;
+                document.getElementById('increaseCoverageButton').disabled = false;
+            } catch (error) {
+                console.error("Error loading the contract ABI:", error);
+            }
+        }
+
+        async function fetchCustomerInfo() {
+            const address = document.getElementById('userAddressInput').value.trim();
+            if (!web3 || !contract || !address) {
+                alert('Please ensure the wallet is connected, and an address is entered.');
+                return;
+            }
+            try {
+                const customerInfo = await contract.methods.customerInfo(address).call();
+                document.getElementById('customerInfoDisplay').classList.remove('hidden');
+                document.getElementById('customerInfoDisplay').innerHTML = displayCustomerInfo(customerInfo);
+            } catch (error) {
+                console.error("Error fetching customer info:", error);
+                alert('Failed to fetch customer info. See console for details.');
+            }
+        }
+
+        async function fetchPolicyInfo() {
+            const address = document.getElementById('userAddressInput').value.trim();
+            if (!web3 || !contract || !address) {
+                alert('Please ensure the wallet is connected, and an address is entered.');
+                return;
+            }
+            try {
+                const policy = await contract.methods.policies(address).call();
+                document.getElementById('policyInfoDisplay').classList.remove('hidden');
+                document.getElementById('policyInfoDisplay').innerHTML = displayPolicyInfo(policy);
+            } catch (error) {
+                console.error("Error fetching policy info:", error);
+                alert('Failed to fetch policy info. See console for details.');
+            }
+        }
+
+        function displayCustomerInfo(info) {
+            return `
+                <p><strong>Customer Info:</strong></p>
+                <p>Name: ${info.name}</p>
+                <p>Birth Year: ${info.birthYear}</p>
+                <p>Address: ${info.addressInfo}</p>
+                <p>Does Smoke: ${info.doesSmoke ? 'Yes' : 'No'}</p>
+                <p>Has Heart Disease: ${info.hasHeartDisease ? 'Yes' : 'No'}</p>
+                <p>Has Diabetes: ${info.hasDiabetes ? 'Yes' : 'No'}</p>
+                <p>Has Respiratory Issue: ${info.hasRespiratoryIssue ? 'Yes' : 'No'}</p>
+            `;
+        }
+
+        function displayPolicyInfo(policy) {
+            return `
+                <p><strong>Policy Info:</strong></p>
+                <p>Coverage Amount: ${policy.coverageAmount}</p>
+                <p>Premium Amount: ${policy.premiumAmount}</p>
+                <p>Duration (Months): ${policy.durationMonths}</p>
+                <p>Next Payment Due: ${new Date(parseInt(policy.nextPaymentDue) * 1000).toLocaleString()}</p>
+                <p>Beneficiary: ${policy.beneficiary}</p>
+                <p>Policy Type: ${policy.policyType}</p>
+            `;
+        }
+        async function payPremium() {
+            const premiumAmount = document.getElementById('premiumAmountInput').value;
+            if (!web3 || !contract || !premiumAmount) {
+                alert('Please ensure the wallet is connected, and a premium amount is entered.');
+                return;
+            }
+            try {
+                await contract.methods.payPremium().send({ from: userAddress, value: web3.utils.toWei(premiumAmount, 'ether') });
+                alert('Premium paid successfully.');
+            } catch (error) {
+                console.error("Error paying premium:", error);
+                alert('Failed to pay premium. See console for details.');
+            }
+        }
+
+        async function initiateClaim() {
+            if (!web3 || !contract) {
+                alert('Please ensure the wallet is connected before initiating a claim.');
+                return;
+            }
+            try {
+                await contract.methods.initiateClaim().send({ from: userAddress });
+                alert('Claim initiated successfully.');
+            } catch (error) {
+                console.error("Error initiating claim:", error);
+                alert('Failed to initiate claim. See console for details.');
+            }
+        }
+
+        async function increaseCoverageAmount() {
+            const newCoverageAmount = document.getElementById('newCoverageAmountInput').value;
+            if (!web3 || !contract || !newCoverageAmount) {
+                alert('Please ensure the wallet is connected, and a new coverage amount is entered.');
+                return;
+            }
+            try {
+                // Assuming your method signature is something like changeCoverageAmount(address, uint256)
+                await contract.methods.changeCoverageAmount(userAddress, web3.utils.toWei(newCoverageAmount, 'ether')).send({ from: userAddress });
+                alert('Coverage amount increased successfully.');
+            } catch (error) {
+                console.error("Error increasing coverage amount:", error);
+                alert('Failed to increase coverage amount. See console for details.');
+            }
+        }
+    </script>
+</body>
+</html>
